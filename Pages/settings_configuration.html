@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <script type="module" async
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpomodorom3564back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10">
+    </script>
+    <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+
+<body class="bg-primary min-h-screen font-inter">
+    <!-- Navigation Header -->
+    <nav class="bg-primary-900 border-b border-primary-700 px-4 py-3">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <h1 class="text-white font-semibold text-lg">Pomodoro Meeting Timer</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="timer_dashboard.html"
+                    class="text-white hover:text-accent transition-micro px-3 py-2 rounded-button hover:bg-primary-800">
+                    Dashboard
+                </a>
+                <a href="settings_configuration.html"
+                    class="text-accent font-medium px-3 py-2 rounded-button bg-accent/10">
+                    Configuración
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex items-center space-x-3 mb-2">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-white">Configuración del Timer</h2>
+            </div>
+            <p class="text-primary-300">Personaliza la duración del timer, preferencias de audio y comportamiento de
+                seguimiento de sesiones</p>
+        </div>
+
+        <!-- Settings Form -->
+        <form id="settingsForm" class="space-y-8">
+            <!-- Timer Settings Card -->
+            <div class="bg-surface rounded-card shadow-elevation p-6">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-primary-800">Configuración del Timer</h3>
+                        <p class="text-sm text-primary-600">Ajusta las duraciones personalizadas para reuniones y
+                            descansos con precisión de segundos</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Meeting Duration -->
+                    <div class="space-y-4">
+                        <label class="block text-sm font-medium text-primary-700">
+                            Duración de Reunión
+                        </label>
+                        <div class="grid grid-cols-3 gap-4">
+                            <!-- Hours -->
+                            <div class="space-y-2">
+                                <label for="meetingHours"
+                                    class="block text-xs font-medium text-primary-600">Horas</label>
+                                <div class="relative">
+                                    <input type="number" id="meetingHours" name="meetingHours" min="0" max="23"
+                                        value="15"
+                                        class="w-full px-3 py-2 bg-primary-50 border border-primary-200 rounded-button text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-micro text-center"
+                                        placeholder="00">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+                                        <span class="text-primary-500 text-xs">h</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Minutes -->
+                            <div class="space-y-2">
+                                <label for="meetingMinutes"
+                                    class="block text-xs font-medium text-primary-600">Minutos</label>
+                                <div class="relative">
+                                    <input type="number" id="meetingMinutes" name="meetingMinutes" min="0" max="59"
+                                        value="0"
+                                        class="w-full px-3 py-2 bg-primary-50 border border-primary-200 rounded-button text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-micro text-center"
+                                        placeholder="00">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+                                        <span class="text-primary-500 text-xs">m</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Seconds -->
+                            <div class="space-y-2">
+                                <label for="meetingSeconds"
+                                    class="block text-xs font-medium text-primary-600">Segundos</label>
+                                <div class="relative">
+                                    <input type="number" id="meetingSeconds" name="meetingSeconds" min="0" max="59"
+                                        value="0"
+                                        class="w-full px-3 py-2 bg-primary-50 border border-primary-200 rounded-button text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-micro text-center"
+                                        placeholder="00">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+                                        <span class="text-primary-500 text-xs">s</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Preview for Meeting Duration -->
+                        <div class="p-3 bg-accent/10 rounded-button border border-accent/20">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-primary-700">Duración Total:</span>
+                                <span id="meetingDurationDisplay"
+                                    class="text-accent font-mono text-lg font-bold">15:00:00</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-primary-600">Rango válido: 0h 0m 1s - 23h 59m 59s (mínimo 1 segundo)</p>
+                    </div>
+
+                    <!-- Break Duration -->
+                    <div class="space-y-4">
+                        <label class="block text-sm font-medium text-primary-700">
+                            Duración de Descanso
+                        </label>
+                        <div class="grid grid-cols-3 gap-4">
+                            <!-- Hours -->
+                            <div class="space-y-2">
+                                <label for="breakHours" class="block text-xs font-medium text-primary-600">Horas</label>
+                                <div class="relative">
+                                    <input type="number" id="breakHours" name="breakHours" min="0" max="23" value="0"
+                                        class="w-full px-3 py-2 bg-primary-50 border border-primary-200 rounded-button text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-micro text-center"
+                                        placeholder="00">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+                                        <span class="text-primary-500 text-xs">h</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Minutes -->
+                            <div class="space-y-2">
+                                <label for="breakMinutes"
+                                    class="block text-xs font-medium text-primary-600">Minutos</label>
+                                <div class="relative">
+                                    <input type="number" id="breakMinutes" name="breakMinutes" min="0" max="59"
+                                        value="5"
+                                        class="w-full px-3 py-2 bg-primary-50 border border-primary-200 rounded-button text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-micro text-center"
+                                        placeholder="00">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+                                        <span class="text-primary-500 text-xs">m</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Seconds -->
+                            <div class="space-y-2">
+                                <label for="breakSeconds"
+                                    class="block text-xs font-medium text-primary-600">Segundos</label>
+                                <div class="relative">
+                                    <input type="number" id="breakSeconds" name="breakSeconds" min="0" max="59"
+                                        value="0"
+                                        class="w-full px-3 py-2 bg-primary-50 border border-primary-200 rounded-button text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-micro text-center"
+                                        placeholder="00">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+                                        <span class="text-primary-500 text-xs">s</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Preview for Break Duration -->
+                        <div class="p-3 bg-success/10 rounded-button border border-success/20">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-primary-700">Duración Total:</span>
+                                <span id="breakDurationDisplay"
+                                    class="text-success font-mono text-lg font-bold">00:05:00</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-primary-600">Rango válido: 0h 0m 1s - 23h 59m 59s (mínimo 1 segundo)</p>
+                    </div>
+                </div>
+
+                <!-- Quick Presets -->
+                <div class="mt-8 pt-6 border-t border-border">
+                    <h4 class="text-sm font-medium text-primary-700 mb-4">Configuraciones Rápidas</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button type="button"
+                            class="preset-btn p-3 bg-primary-100 hover:bg-accent hover:text-white text-primary-700 text-sm rounded-button transition-micro"
+                            data-meeting-hours="8" data-meeting-minutes="0" data-meeting-seconds="0"
+                            data-break-hours="0" data-break-minutes="15" data-break-seconds="0">
+                            <div class="font-medium">Jornada Corta</div>
+                            <div class="text-xs opacity-75">Reunión: 8:00:00 | Descanso: 00:15:00</div>
+                        </button>
+                        <button type="button"
+                            class="preset-btn p-3 bg-primary-100 hover:bg-accent hover:text-white text-primary-700 text-sm rounded-button transition-micro"
+                            data-meeting-hours="1" data-meeting-minutes="30" data-meeting-seconds="0"
+                            data-break-hours="0" data-break-minutes="10" data-break-seconds="0">
+                            <div class="font-medium">Reunión Estándar</div>
+                            <div class="text-xs opacity-75">Reunión: 1:30:00 | Descanso: 00:10:00</div>
+                        </button>
+                        <button type="button"
+                            class="preset-btn p-3 bg-primary-100 hover:bg-accent hover:text-white text-primary-700 text-sm rounded-button transition-micro"
+                            data-meeting-hours="0" data-meeting-minutes="25" data-meeting-seconds="0"
+                            data-break-hours="0" data-break-minutes="5" data-break-seconds="0">
+                            <div class="font-medium">Pomodoro Clásico</div>
+                            <div class="text-xs opacity-75">Reunión: 00:25:00 | Descanso: 00:05:00</div>
+                        </button>
+                        <button type="button"
+                            class="preset-btn p-3 bg-primary-100 hover:bg-accent hover:text-white text-primary-700 text-sm rounded-button transition-micro"
+                            data-meeting-hours="0" data-meeting-minutes="15" data-meeting-seconds="0"
+                            data-break-hours="0" data-break-minutes="5" data-break-seconds="0">
+                            <div class="font-medium">Reunión Rápida</div>
+                            <div class="text-xs opacity-75">Reunión: 00:15:00 | Descanso: 00:05:00</div>
+                        </button>
+                        <button type="button"
+                            class="preset-btn p-3 bg-primary-100 hover:bg-accent hover:text-white text-primary-700 text-sm rounded-button transition-micro"
+                            data-meeting-hours="0" data-meeting-minutes="5" data-meeting-seconds="0"
+                            data-break-hours="0" data-break-minutes="1" data-break-seconds="0">
+                            <div class="font-medium">Sprint Rápido</div>
+                            <div class="text-xs opacity-75">Reunión: 00:05:00 | Descanso: 00:01:00</div>
+                        </button>
+                        <button type="button"
+                            class="preset-btn p-3 bg-primary-100 hover:bg-accent hover:text-white text-primary-700 text-sm rounded-button transition-micro"
+                            data-meeting-hours="0" data-meeting-minutes="0" data-meeting-seconds="30"
+                            data-break-hours="0" data-break-minutes="0" data-break-seconds="10">
+                            <div class="font-medium">Test Rápido</div>
+                            <div class="text-xs opacity-75">Reunión: 00:00:30 | Descanso: 00:00:10</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Settings Card -->
+            <div class="bg-surface rounded-card shadow-elevation p-6">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.828 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.828l3.555-3.793A1 1 0 019.383 3.076zM12 6a1 1 0 011.414 0A5.001 5.001 0 0116 10a5.001 5.001 0 01-2.586 4.414 1 1 0 01-1.414-1.414A3.001 3.001 0 0014 10a3.001 3.001 0 00-2-2.828A1 1 0 0112 6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-primary-800">Configuración de Audio</h3>
+                        <p class="text-sm text-primary-600">Controla los anuncios de voz y sonidos de alerta</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Voice Announcements -->
+                    <div class="flex items-center justify-between p-4 bg-primary-50 rounded-button">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h3.763l7.79 3.894A1 1 0 0018 15V3zM3.5 9.5a.5.5 0 01-.5-.5V8a.5.5 0 01.5-.5h1A.5.5 0 015 8v1a.5.5 0 01-.5.5h-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="font-medium text-primary-800">Anuncios de Voz</span>
+                            </div>
+                            <p class="text-sm text-primary-600">Anuncios en español para inicio de sesión y descanso</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="voiceAnnouncementsToggle" type="checkbox" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-primary-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Alert Sounds -->
+                    <div class="flex items-center justify-between p-4 bg-primary-50 rounded-button">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z" />
+                                </svg>
+                                <span class="font-medium text-primary-800">Sonidos de Alerta</span>
+                            </div>
+                            <p class="text-sm text-primary-600">Sonido suave al final de cada bloque de tiempo</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="alertSoundsToggle" type="checkbox" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-primary-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Volume Control -->
+                    <div class="p-4 bg-primary-50 rounded-button">
+                        <label class="block text-sm font-medium text-primary-800 mb-3">Control de Volumen</label>
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.828 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.828l3.555-3.793A1 1 0 019.383 3.076z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <input id="volumeControl" type="range" min="0" max="100" value="70"
+                                class="flex-1 h-2 bg-primary-200 rounded-lg appearance-none cursor-pointer slider">
+                            <div class="flex items-center space-x-1">
+                                <span id="volumeDisplay"
+                                    class="text-sm font-medium text-primary-700 min-w-[3ch]">70</span>
+                                <span class="text-sm text-primary-600">%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Test Buttons -->
+                    <div class="flex space-x-3">
+                        <button type="button" id="testVoiceBtn"
+                            class="flex-1 touch-target bg-primary-100 hover:bg-primary-200 text-primary-800 font-medium rounded-button transition-micro hover-lift">
+                            <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Probar Voz
+                        </button>
+                        <button type="button" id="testAlertBtn"
+                            class="flex-1 touch-target bg-primary-100 hover:bg-primary-200 text-primary-800 font-medium rounded-button transition-micro hover-lift">
+                            <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z" />
+                            </svg>
+                            Probar Alerta
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Session Tracking Card -->
+            <div class="bg-surface rounded-card shadow-elevation p-6">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-primary-800">Seguimiento de Sesiones</h3>
+                        <p class="text-sm text-primary-600">Configura el comportamiento del contador de sesiones</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Counter Behavior -->
+                    <div class="flex items-center justify-between p-4 bg-primary-50 rounded-button">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                <span class="font-medium text-primary-800">Contador Acumulativo</span>
+                            </div>
+                            <p class="text-sm text-primary-600">Mantener el contador entre sesiones o reiniciar cada día
+                            </p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="cumulativeCounterToggle" type="checkbox" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-primary-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Auto-start Next Session -->
+                    <div class="flex items-center justify-between p-4 bg-primary-50 rounded-button">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="font-medium text-primary-800">Inicio Automático</span>
+                            </div>
+                            <p class="text-sm text-primary-600">Iniciar automáticamente la siguiente sesión después del
+                                descanso</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="autoStartToggle" type="checkbox" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-primary-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyboard Shortcuts Card -->
+            <div class="bg-surface rounded-card shadow-elevation p-6">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-primary-800">Atajos de Teclado</h3>
+                        <p class="text-sm text-primary-600">Personaliza las combinaciones de teclas para acciones
+                            rápidas</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-center justify-between p-3 bg-primary-50 rounded-button">
+                        <span class="text-sm font-medium text-primary-700">Iniciar/Pausar Timer</span>
+                        <div class="flex items-center space-x-1">
+                            <kbd
+                                class="px-2 py-1 bg-white border border-primary-200 rounded text-xs font-mono text-primary-800">Espacio</kbd>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-primary-50 rounded-button">
+                        <span class="text-sm font-medium text-primary-700">Detener Timer</span>
+                        <div class="flex items-center space-x-1">
+                            <kbd
+                                class="px-2 py-1 bg-white border border-primary-200 rounded text-xs font-mono text-primary-800">Esc</kbd>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-primary-50 rounded-button">
+                        <span class="text-sm font-medium text-primary-700">Aumentar Tiempo</span>
+                        <div class="flex items-center space-x-1">
+                            <kbd
+                                class="px-2 py-1 bg-white border border-primary-200 rounded text-xs font-mono text-primary-800">+</kbd>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-primary-50 rounded-button">
+                        <span class="text-sm font-medium text-primary-700">Disminuir Tiempo</span>
+                        <div class="flex items-center space-x-1">
+                            <kbd
+                                class="px-2 py-1 bg-white border border-primary-200 rounded text-xs font-mono text-primary-800">-</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                <button type="submit"
+                    class="flex-1 touch-target bg-accent hover:bg-accent-600 text-white font-semibold rounded-button transition-micro hover-lift">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Guardar Configuración
+                </button>
+                <button type="button" id="resetToDefaults"
+                    class="flex-1 touch-target bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-button transition-micro hover-lift">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Restaurar Valores por Defecto
+                </button>
+                <a href="timer_dashboard.html"
+                    class="flex-1 touch-target bg-primary-100 hover:bg-primary-200 text-primary-800 font-semibold rounded-button transition-micro hover-lift text-center flex items-center justify-center">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Volver al Dashboard
+                </a>
+            </div>
+        </form>
+
+        <!-- Success Message -->
+        <div id="successMessage"
+            class="hidden fixed top-4 right-4 bg-success text-white px-6 py-3 rounded-button shadow-elevation z-50">
+            <div class="flex items-center space-x-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd" />
+                </svg>
+                <span>Configuración guardada exitosamente</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Audio Elements for Testing -->
+    <audio id="testVoiceAudio" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+    <audio id="testAlertAudio" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-01.wav" type="audio/wav">
+    </audio>
+
+    <script>
+        // Settings Configuration Management
+        class SettingsManager {
+            constructor() {
+                this.defaultSettings = {
+                    meetingHours: 15,
+                    meetingMinutes: 0,
+                    meetingSeconds: 0,
+                    breakHours: 0,
+                    breakMinutes: 5,
+                    breakSeconds: 0,
+                    voiceAnnouncements: true,
+                    alertSounds: true,
+                    volume: 70,
+                    cumulativeCounter: true,
+                    autoStart: false
+                };
+
+                // Audio context for generating alert sounds
+                this.audioContext = null;
+                this.initializeAudioContext();
+
+                this.initializeElements();
+                this.loadSettings();
+                this.bindEvents();
+                this.updateDurationDisplays();
+            }
+
+            // Initialize Web Audio API
+            initializeAudioContext() {
+                try {
+                    this.audioContext = new(window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.log('Web Audio API not supported');
+                }
+            }
+
+            // Generate a notification beep sound
+            generateBeepSound(frequency = 800, duration = 200, type = 'sine') {
+                if (!this.audioContext) return;
+
+                try {
+                    // Resume audio context if suspended (required for some browsers)
+                    if (this.audioContext.state === 'suspended') {
+                        this.audioContext.resume();
+                    }
+
+                    const oscillator = this.audioContext.createOscillator();
+                    const gainNode = this.audioContext.createGain();
+
+                    // Connect nodes
+                    oscillator.connect(gainNode);
+                    gainNode.connect(this.audioContext.destination);
+
+                    // Configure oscillator
+                    oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+                    oscillator.type = type;
+
+                    // Configure gain (volume)
+                    const volume = (this.volumeSlider.value / 100) * 0.3; // Max 30% to avoid too loud sounds
+                    gainNode.gain.setValueAtTime(0, this.audioContext.currentTime);
+                    gainNode.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 0.01);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + duration /
+                        1000);
+
+                    // Start and stop
+                    oscillator.start(this.audioContext.currentTime);
+                    oscillator.stop(this.audioContext.currentTime + duration / 1000);
+
+                } catch (e) {
+                    console.log('Audio generation failed:', e);
+                    // Fallback to system beep
+                    this.systemBeepFallback();
+                }
+            }
+
+            // Generate a more pleasant notification sound
+            generateNotificationSound() {
+                if (!this.audioContext) {
+                    this.systemBeepFallback();
+                    return;
+                }
+
+                // Play a pleasant two-tone chime
+                setTimeout(() => this.generateBeepSound(523.25, 150), 0); // C5
+                setTimeout(() => this.generateBeepSound(659.25, 150), 100); // E5
+            }
+
+            // System beep fallback for browsers without Web Audio API
+            systemBeepFallback() {
+                // Create a short data URI audio for browsers that support it
+                try {
+                    const audioContext = new AudioContext();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.frequency.value = 800;
+                    oscillator.type = 'sine';
+                    gainNode.gain.value = 0.1;
+
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                } catch (e) {
+                    // Final fallback - show visual notification
+                    this.showVisualAlertFeedback();
+                }
+            }
+
+            // Visual feedback when audio fails
+            showVisualAlertFeedback() {
+                const button = document.getElementById('testAlertBtn');
+                const originalBg = button.style.backgroundColor;
+                const originalColor = button.style.color;
+
+                button.style.backgroundColor = '#ee9d1a';
+                button.style.color = 'white';
+                button.innerHTML = button.innerHTML.replace('Probar Alerta', '🔊 Sonido Reproducido');
+
+                setTimeout(() => {
+                    button.style.backgroundColor = originalBg;
+                    button.style.color = originalColor;
+                    button.innerHTML = button.innerHTML.replace('🔊 Sonido Reproducido', 'Probar Alerta');
+                }, 1000);
+            }
+
+            initializeElements() {
+                this.form = document.getElementById('settingsForm');
+                // Meeting duration inputs
+                this.meetingHoursInput = document.getElementById('meetingHours');
+                this.meetingMinutesInput = document.getElementById('meetingMinutes');
+                this.meetingSecondsInput = document.getElementById('meetingSeconds');
+                // Break duration inputs
+                this.breakHoursInput = document.getElementById('breakHours');
+                this.breakMinutesInput = document.getElementById('breakMinutes');
+                this.breakSecondsInput = document.getElementById('breakSeconds');
+                // Other controls
+                this.voiceToggle = document.getElementById('voiceAnnouncementsToggle');
+                this.alertToggle = document.getElementById('alertSoundsToggle');
+                this.volumeSlider = document.getElementById('volumeControl');
+                this.volumeDisplay = document.getElementById('volumeDisplay');
+                this.cumulativeToggle = document.getElementById('cumulativeCounterToggle');
+                this.autoStartToggle = document.getElementById('autoStartToggle');
+                this.successMessage = document.getElementById('successMessage');
+                // Duration displays
+                this.meetingDurationDisplay = document.getElementById('meetingDurationDisplay');
+                this.breakDurationDisplay = document.getElementById('breakDurationDisplay');
+            }
+
+            bindEvents() {
+                // Form submission
+                this.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.saveSettings();
+                });
+
+                // Volume slider
+                this.volumeSlider.addEventListener('input', (e) => {
+                    this.volumeDisplay.textContent = e.target.value;
+                });
+
+                // Duration input changes
+                [this.meetingHoursInput, this.meetingMinutesInput, this.meetingSecondsInput].forEach(input => {
+                    input.addEventListener('input', () => {
+                        this.validateTimeInput(input);
+                        this.updateDurationDisplays();
+                    });
+                });
+
+                [this.breakHoursInput, this.breakMinutesInput, this.breakSecondsInput].forEach(input => {
+                    input.addEventListener('input', () => {
+                        this.validateTimeInput(input);
+                        this.updateDurationDisplays();
+                    });
+                });
+
+                // Preset buttons
+                document.querySelectorAll('.preset-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const button = e.currentTarget;
+                        this.applyPreset(button);
+                        this.highlightPresetButton(button);
+                    });
+                });
+
+                // Test buttons with improved error handling
+                document.getElementById('testVoiceBtn').addEventListener('click', () => {
+                    this.testVoiceAnnouncement();
+                });
+
+                document.getElementById('testAlertBtn').addEventListener('click', () => {
+                    this.testAlertSound();
+                });
+
+                // Reset to defaults
+                document.getElementById('resetToDefaults').addEventListener('click', () => {
+                    if (confirm('¿Estás seguro de que quieres restaurar todos los valores por defecto?')) {
+                        this.resetToDefaults();
+                    }
+                });
+
+                // Keyboard shortcuts info
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'Escape' && !e.target.matches('input, textarea, select')) {
+                        window.location.href = 'timer_dashboard.html';
+                    }
+                });
+            }
+
+            loadSettings() {
+                // Load from localStorage or use defaults
+                const settings = {
+                    meetingHours: parseInt(localStorage.getItem('meetingHours') || this.defaultSettings
+                        .meetingHours),
+                    meetingMinutes: parseInt(localStorage.getItem('meetingMinutes') || this.defaultSettings
+                        .meetingMinutes),
+                    meetingSeconds: parseInt(localStorage.getItem('meetingSeconds') || this.defaultSettings
+                        .meetingSeconds),
+                    breakHours: parseInt(localStorage.getItem('breakHours') || this.defaultSettings.breakHours),
+                    breakMinutes: parseInt(localStorage.getItem('breakMinutes') || this.defaultSettings
+                        .breakMinutes),
+                    breakSeconds: parseInt(localStorage.getItem('breakSeconds') || this.defaultSettings
+                        .breakSeconds),
+                    voiceAnnouncements: localStorage.getItem('voiceEnabled') !== 'false',
+                    alertSounds: localStorage.getItem('alertEnabled') !== 'false',
+                    volume: parseInt(localStorage.getItem('volume') || this.defaultSettings.volume),
+                    cumulativeCounter: localStorage.getItem('isCumulative') !== 'false',
+                    autoStart: localStorage.getItem('autoStart') === 'true'
+                };
+
+                // Apply settings to form
+                this.meetingHoursInput.value = settings.meetingHours;
+                this.meetingMinutesInput.value = settings.meetingMinutes;
+                this.meetingSecondsInput.value = settings.meetingSeconds;
+                this.breakHoursInput.value = settings.breakHours;
+                this.breakMinutesInput.value = settings.breakMinutes;
+                this.breakSecondsInput.value = settings.breakSeconds;
+                this.voiceToggle.checked = settings.voiceAnnouncements;
+                this.alertToggle.checked = settings.alertSounds;
+                this.volumeSlider.value = settings.volume;
+                this.volumeDisplay.textContent = settings.volume;
+                this.cumulativeToggle.checked = settings.cumulativeCounter;
+                this.autoStartToggle.checked = settings.autoStart;
+            }
+
+            saveSettings() {
+                // Validate inputs
+                if (!this.validateAllInputs()) {
+                    return;
+                }
+
+                // Calculate total seconds for backward compatibility
+                const meetingTotalSeconds = this.getTotalSeconds('meeting');
+                const breakTotalSeconds = this.getTotalSeconds('break');
+
+                // Save new granular time settings
+                localStorage.setItem('meetingHours', this.meetingHoursInput.value);
+                localStorage.setItem('meetingMinutes', this.meetingMinutesInput.value);
+                localStorage.setItem('meetingSeconds', this.meetingSecondsInput.value);
+                localStorage.setItem('breakHours', this.breakHoursInput.value);
+                localStorage.setItem('breakMinutes', this.breakMinutesInput.value);
+                localStorage.setItem('breakSeconds', this.breakSecondsInput.value);
+
+                // Save backward compatibility settings
+                localStorage.setItem('meetingDuration', Math.max(1, Math.ceil(meetingTotalSeconds /
+                3600))); // hours
+                localStorage.setItem('breakDuration', Math.max(1, Math.ceil(breakTotalSeconds / 60))); // minutes
+
+                // Save other settings
+                localStorage.setItem('voiceEnabled', this.voiceToggle.checked);
+                localStorage.setItem('alertEnabled', this.alertToggle.checked);
+                localStorage.setItem('volume', this.volumeSlider.value);
+                localStorage.setItem('isCumulative', this.cumulativeToggle.checked);
+                localStorage.setItem('autoStart', this.autoStartToggle.checked);
+
+                // Show success message
+                this.showSuccessMessage();
+
+                // Optional: Redirect back to dashboard after a delay
+                setTimeout(() => {
+                    window.location.href = 'timer_dashboard.html';
+                }, 1500);
+            }
+
+            validateTimeInput(input) {
+                const value = parseInt(input.value);
+                const min = parseInt(input.min);
+                const max = parseInt(input.max);
+
+                if (isNaN(value) || value < min || value > max) {
+                    input.classList.add('border-error', 'focus:ring-error', 'focus:border-error');
+                    input.classList.remove('border-primary-200', 'focus:ring-accent', 'focus:border-accent');
+                    return false;
+                } else {
+                    input.classList.remove('border-error', 'focus:ring-error', 'focus:border-error');
+                    input.classList.add('border-primary-200', 'focus:ring-accent', 'focus:border-accent');
+                    return true;
+                }
+            }
+
+            validateAllInputs() {
+                const timeInputs = [
+                    this.meetingHoursInput, this.meetingMinutesInput, this.meetingSecondsInput,
+                    this.breakHoursInput, this.breakMinutesInput, this.breakSecondsInput
+                ];
+
+                let allValid = true;
+                timeInputs.forEach(input => {
+                    if (!this.validateTimeInput(input)) {
+                        allValid = false;
+                    }
+                });
+
+                // Check if meeting and break durations are at least 1 second
+                const meetingTotal = this.getTotalSeconds('meeting');
+                const breakTotal = this.getTotalSeconds('break');
+
+                if (meetingTotal < 1) {
+                    this.showError('La duración de la reunión debe ser de al menos 1 segundo');
+                    allValid = false;
+                }
+
+                if (breakTotal < 1) {
+                    this.showError('La duración del descanso debe ser de al menos 1 segundo');
+                    allValid = false;
+                }
+
+                return allValid;
+            }
+
+            getTotalSeconds(type) {
+                if (type === 'meeting') {
+                    const hours = parseInt(this.meetingHoursInput.value) || 0;
+                    const minutes = parseInt(this.meetingMinutesInput.value) || 0;
+                    const seconds = parseInt(this.meetingSecondsInput.value) || 0;
+                    return (hours * 3600) + (minutes * 60) + seconds;
+                } else if (type === 'break') {
+                    const hours = parseInt(this.breakHoursInput.value) || 0;
+                    const minutes = parseInt(this.breakMinutesInput.value) || 0;
+                    const seconds = parseInt(this.breakSecondsInput.value) || 0;
+                    return (hours * 3600) + (minutes * 60) + seconds;
+                }
+                return 0;
+            }
+
+            formatDuration(totalSeconds) {
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+                return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            updateDurationDisplays() {
+                const meetingTotal = this.getTotalSeconds('meeting');
+                const breakTotal = this.getTotalSeconds('break');
+
+                this.meetingDurationDisplay.textContent = this.formatDuration(meetingTotal);
+                this.breakDurationDisplay.textContent = this.formatDuration(breakTotal);
+            }
+
+            applyPreset(button) {
+                const meetingHours = button.dataset.meetingHours;
+                const meetingMinutes = button.dataset.meetingMinutes;
+                const meetingSeconds = button.dataset.meetingSeconds;
+                const breakHours = button.dataset.breakHours;
+                const breakMinutes = button.dataset.breakMinutes;
+                const breakSeconds = button.dataset.breakSeconds;
+
+                this.meetingHoursInput.value = meetingHours;
+                this.meetingMinutesInput.value = meetingMinutes;
+                this.meetingSecondsInput.value = meetingSeconds;
+                this.breakHoursInput.value = breakHours;
+                this.breakMinutesInput.value = breakMinutes;
+                this.breakSecondsInput.value = breakSeconds;
+
+                this.updateDurationDisplays();
+            }
+
+            resetToDefaults() {
+                this.meetingHoursInput.value = this.defaultSettings.meetingHours;
+                this.meetingMinutesInput.value = this.defaultSettings.meetingMinutes;
+                this.meetingSecondsInput.value = this.defaultSettings.meetingSeconds;
+                this.breakHoursInput.value = this.defaultSettings.breakHours;
+                this.breakMinutesInput.value = this.defaultSettings.breakMinutes;
+                this.breakSecondsInput.value = this.defaultSettings.breakSeconds;
+                this.voiceToggle.checked = this.defaultSettings.voiceAnnouncements;
+                this.alertToggle.checked = this.defaultSettings.alertSounds;
+                this.volumeSlider.value = this.defaultSettings.volume;
+                this.volumeDisplay.textContent = this.defaultSettings.volume;
+                this.cumulativeToggle.checked = this.defaultSettings.cumulativeCounter;
+                this.autoStartToggle.checked = this.defaultSettings.autoStart;
+
+                // Clear validation errors
+                const timeInputs = [
+                    this.meetingHoursInput, this.meetingMinutesInput, this.meetingSecondsInput,
+                    this.breakHoursInput, this.breakMinutesInput, this.breakSecondsInput
+                ];
+
+                timeInputs.forEach(input => {
+                    input.classList.remove('border-error', 'focus:ring-error', 'focus:border-error');
+                    input.classList.add('border-primary-200', 'focus:ring-accent', 'focus:border-accent');
+                });
+
+                this.updateDurationDisplays();
+            }
+
+            highlightPresetButton(button) {
+                // Remove highlight from all preset buttons
+                document.querySelectorAll('.preset-btn').forEach(btn => {
+                    btn.classList.remove('bg-accent', 'text-white');
+                    btn.classList.add('bg-primary-100', 'text-primary-700');
+                });
+
+                // Highlight selected button
+                button.classList.remove('bg-primary-100', 'text-primary-700');
+                button.classList.add('bg-accent', 'text-white');
+
+                // Remove highlight after 2 seconds
+                setTimeout(() => {
+                    button.classList.remove('bg-accent', 'text-white');
+                    button.classList.add('bg-primary-100', 'text-primary-700');
+                }, 2000);
+            }
+
+            testVoiceAnnouncement() {
+                if ('speechSynthesis' in window) {
+                    try {
+                        // Stop any currently speaking utterances
+                        speechSynthesis.cancel();
+
+                        const utterance = new SpeechSynthesisUtterance();
+                        utterance.lang = 'es-ES';
+                        utterance.volume = this.volumeSlider.value / 100;
+                        utterance.rate = 0.9;
+                        utterance.pitch = 1.0;
+                        utterance.text = 'Empieza la reunión';
+
+                        // Add error handling for speech synthesis
+                        utterance.onerror = (event) => {
+                            console.log('Speech synthesis error:', event.error);
+                            this.showVoiceTestFeedback(false);
+                        };
+
+                        utterance.onend = () => {
+                            this.showVoiceTestFeedback(true);
+                        };
+
+                        speechSynthesis.speak(utterance);
+                    } catch (e) {
+                        console.log('Speech synthesis failed:', e);
+                        this.showVoiceTestFeedback(false);
+                    }
+                } else {
+                    this.showVoiceTestFeedback(false);
+                }
+            }
+
+            showVoiceTestFeedback(success) {
+                const button = document.getElementById('testVoiceBtn');
+                const originalContent = button.innerHTML;
+
+                if (success) {
+                    button.innerHTML = button.innerHTML.replace('Probar Voz', '🗣️ Voz Reproducida');
+                    button.style.backgroundColor = '#10b981';
+                    button.style.color = 'white';
+                } else {
+                    button.innerHTML = button.innerHTML.replace('Probar Voz', '❌ Voz No Disponible');
+                    button.style.backgroundColor = '#ef4444';
+                    button.style.color = 'white';
+                }
+
+                setTimeout(() => {
+                    button.innerHTML = originalContent;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }
+
+            testAlertSound() {
+                try {
+                    // Generate the notification sound using Web Audio API
+                    this.generateNotificationSound();
+                    this.showAlertTestFeedback(true);
+                } catch (e) {
+                    console.log('Alert sound generation failed:', e);
+                    this.showAlertTestFeedback(false);
+                }
+            }
+
+            showAlertTestFeedback(success) {
+                const button = document.getElementById('testAlertBtn');
+                const originalContent = button.innerHTML;
+
+                if (success) {
+                    button.innerHTML = button.innerHTML.replace('Probar Alerta', '🔊 Alerta Reproducida');
+                    button.style.backgroundColor = '#10b981';
+                    button.style.color = 'white';
+                } else {
+                    button.innerHTML = button.innerHTML.replace('Probar Alerta', '❌ Audio No Disponible');
+                    button.style.backgroundColor = '#ef4444';
+                    button.style.color = 'white';
+                }
+
+                setTimeout(() => {
+                    button.innerHTML = originalContent;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }
+
+            showSuccessMessage() {
+                this.successMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    this.successMessage.classList.add('hidden');
+                }, 3000);
+            }
+
+            showError(message) {
+                // Create and show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className =
+                    'fixed top-4 right-4 bg-error text-white px-6 py-3 rounded-button shadow-elevation z-50';
+                errorDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>${message}</span>
+                </div>
+            `;
+                document.body.appendChild(errorDiv);
+
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 4000);
+            }
+        }
+
+        // Initialize settings manager when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SettingsManager();
+        });
+
+        // Custom slider styling
+        const style = document.createElement('style');
+        style.textContent = `
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ee9d1a;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .slider::-moz-range-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ee9d1a;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    `;
+        document.head.appendChild(style);
+    </script>
+    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>

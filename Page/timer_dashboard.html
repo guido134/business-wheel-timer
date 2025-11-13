@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Temporizador</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <script type="module" async
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpomodorom3564back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10">
+    </script>
+    <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+
+<body class="bg-primary min-h-screen font-inter">
+    <!-- Navigation Header -->
+    <nav class="bg-primary-900 border-b border-primary-700 px-4 py-3">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <h1 class="text-white font-semibold text-lg">Rueda de Negocios - ExpoConstrucción</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="timer_dashboard.html" class="text-accent font-medium px-3 py-2 rounded-button bg-accent/10">
+                    Dashboard
+                </a>
+                <a href="settings_configuration.html"
+                    class="text-white hover:text-accent transition-micro px-3 py-2 rounded-button hover:bg-primary-800">
+                    Configuración
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Timer Card -->
+        <div class="bg-surface rounded-card shadow-elevation p-8 mb-8">
+            <!-- Session Status -->
+            <div class="text-center mb-8">
+                <div id="sessionStatus"
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 border border-accent/20">
+                    <div class="w-3 h-3 bg-accent rounded-full mr-2 animate-breathe"></div>
+                    <span id="statusText" class="text-accent font-medium">Sesión de Reunión</span>
+                </div>
+            </div>
+
+            <!-- Circular Progress Timer -->
+            <div class="flex justify-center mb-8">
+                <div class="relative w-80 h-80">
+                    <!-- Background Circle -->
+                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"
+                            class="text-primary-100" />
+                        <circle id="progressCircle" cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4"
+                            fill="none" class="text-accent transition-smooth" stroke-dasharray="251.2"
+                            stroke-dashoffset="0" stroke-linecap="round" />
+                    </svg>
+
+                    <!-- Timer Display -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center">
+                            <div id="timerDisplay" class="timer-display text-primary-800 font-jetbrains">00:00:00</div>
+                            <div class="text-primary-600 text-sm font-medium mt-2">Tiempo Restante</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manual Time Adjustment -->
+            <!-- 
+            <div class="flex justify-center items-center space-x-6 mb-8">
+                <button id="decreaseTime"
+                    class="touch-target bg-primary-100 hover:bg-primary-200 text-primary-800 rounded-button transition-micro hover-lift">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                    </svg>
+                    <span class="ml-2 font-medium">1 min</span>
+                </button>
+
+                <div class="text-primary-600 text-sm font-medium">Ajustar Tiempo</div>
+
+                <button id="increaseTime"
+                    class="touch-target bg-primary-100 hover:bg-primary-200 text-primary-800 rounded-button transition-micro hover-lift">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    <span class="ml-2 font-medium">1 min</span>
+                </button>
+            </div>
+            -->
+            <!-- Primary Controls -->
+            <div class="flex justify-center space-x-4 mb-8">
+                <button id="startBtn"
+                    class="touch-target bg-accent hover:bg-accent-600 text-white font-semibold rounded-button transition-micro hover-lift px-8">
+                    <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Iniciar
+                </button>
+
+                <button id="pauseBtn"
+                    class="touch-target bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-button transition-micro hover-lift px-8 hidden">
+                    <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Pausar
+                </button>
+
+                <button id="stopBtn"
+                    class="touch-target bg-error hover:bg-error-600 text-white font-semibold rounded-button transition-micro hover-lift px-8 hidden">
+                    <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Detener
+                </button>
+            </div>
+        </div>
+
+        <!-- Session Counter & Audio Controls -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Session Counter Card -->
+            <div class="bg-surface rounded-card shadow-soft p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-primary-800">Sesiones Completadas</h3>
+                    <button id="resetCounter" class="text-primary-600 hover:text-error transition-micro">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <div id="sessionCount" class="text-4xl font-bold text-accent mb-2">0</div>
+                    <div class="text-primary-600 text-sm">Reuniones Completadas</div>
+                </div>
+
+                <!-- Counter Preference Toggle -->
+                <div class="mt-6 pt-4 border-t border-border">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-primary-700">Contador Acumulativo</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="cumulativeToggle" type="checkbox" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-primary-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Controls Card -->
+            <div class="bg-surface rounded-card shadow-soft p-6">
+                <h3 class="text-lg font-semibold text-primary-800 mb-4">Controles de Audio</h3>
+
+                <!-- Voice Announcements -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-sm font-medium text-primary-700">Anuncios de Voz</span>
+                            <p class="text-xs text-primary-600">Anuncios en español para inicio de sesión/descanso</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="voiceToggle" type="checkbox" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-primary-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Alert Sounds -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-sm font-medium text-primary-700">Sonidos de Alerta</span>
+                            <p class="text-xs text-primary-600">Sonido suave al final de cada bloque</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="alertToggle" type="checkbox" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-primary-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Volume Control -->
+                    <div class="pt-2">
+                        <label class="text-sm font-medium text-primary-700 block mb-2">Control de Volumen</label>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.828 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.828l3.555-3.793A1 1 0 019.383 3.076zM12 6a1 1 0 011.414 0A5.001 5.001 0 0116 10a5.001 5.001 0 01-2.586 4.414 1 1 0 01-1.414-1.414A3.001 3.001 0 0014 10a3.001 3.001 0 00-2-2.828A1 1 0 0112 6z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <input id="volumeSlider" type="range" min="0" max="100" value="70"
+                                class="flex-1 h-2 bg-primary-200 rounded-lg appearance-none cursor-pointer slider">
+                            <span id="volumeValue" class="text-sm text-primary-600 min-w-[3ch]">70%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Settings -->
+        <div class="mt-8 text-center">
+            <a href="settings_configuration.html"
+                class="inline-flex items-center text-accent hover:text-accent-600 font-medium transition-micro">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Configuración Avanzada
+            </a>
+        </div>
+    </main>
+
+    <!-- Audio Elements -->
+    <audio id="startMeetingAudio" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+    <audio id="startBreakAudio" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-04.wav" type="audio/wav">
+    </audio>
+    <audio id="alertAudio" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-01.wav" type="audio/wav">
+    </audio>
+
+    <script>
+        // Timer State Management
+        class PomodoroTimer {
+            constructor() {
+                this.isRunning = false;
+                this.isPaused = false;
+                this.currentTime = this.getStoredMeetingDuration();
+                this.totalTime = this.getStoredMeetingDuration();
+                this.isBreakMode = false;
+                this.sessionCount = parseInt(localStorage.getItem('sessionCount') || '0');
+                this.isCumulative = localStorage.getItem('isCumulative') !== 'false';
+                this.voiceEnabled = localStorage.getItem('voiceEnabled') !== 'false';
+                this.alertEnabled = localStorage.getItem('alertEnabled') !== 'false';
+                this.volume = parseInt(localStorage.getItem('volume') || '70');
+                this.autoStart = localStorage.getItem('autoStart') === 'true';
+                this.interval = null;
+
+                this.initializeElements();
+                this.bindEvents();
+                this.updateDisplay();
+                this.loadSettings();
+            }
+
+            getStoredMeetingDuration() {
+                // Get granular time settings if available, otherwise fallback to legacy hours setting
+                const hours = parseInt(localStorage.getItem('meetingHours') || '0');
+                const minutes = parseInt(localStorage.getItem('meetingMinutes') || '15');
+                const seconds = parseInt(localStorage.getItem('meetingSeconds') || '0');
+                return (hours * 3600) + (minutes * 60) + seconds;
+            }
+
+            getStoredBreakDuration() {
+                // Get granular time settings if available, otherwise fallback to legacy minutes setting
+                const hours = parseInt(localStorage.getItem('breakHours') || '0');
+                const minutes = parseInt(localStorage.getItem('breakMinutes') || '5');
+                const seconds = parseInt(localStorage.getItem('breakSeconds') || '0');
+                return (hours * 3600) + (minutes * 60) + seconds;
+            }
+
+            initializeElements() {
+                this.timerDisplay = document.getElementById('timerDisplay');
+                this.progressCircle = document.getElementById('progressCircle');
+                this.statusText = document.getElementById('statusText');
+                this.sessionStatus = document.getElementById('sessionStatus');
+                this.startBtn = document.getElementById('startBtn');
+                this.pauseBtn = document.getElementById('pauseBtn');
+                this.stopBtn = document.getElementById('stopBtn');
+                this.sessionCountDisplay = document.getElementById('sessionCount');
+                this.volumeSlider = document.getElementById('volumeSlider');
+                this.volumeValue = document.getElementById('volumeValue');
+            }
+
+            bindEvents() {
+                this.startBtn.addEventListener('click', () => this.start());
+                this.pauseBtn.addEventListener('click', () => this.pause());
+                this.stopBtn.addEventListener('click', () => this.stop());
+
+                document.getElementById('increaseTime').addEventListener('click', () => this.adjustTime(60));
+                document.getElementById('decreaseTime').addEventListener('click', () => this.adjustTime(-60));
+                document.getElementById('resetCounter').addEventListener('click', () => this.resetCounter());
+
+                document.getElementById('cumulativeToggle').addEventListener('change', (e) => {
+                    this.isCumulative = e.target.checked;
+                    localStorage.setItem('isCumulative', this.isCumulative);
+                });
+
+                document.getElementById('voiceToggle').addEventListener('change', (e) => {
+                    this.voiceEnabled = e.target.checked;
+                    localStorage.setItem('voiceEnabled', this.voiceEnabled);
+                });
+
+                document.getElementById('alertToggle').addEventListener('change', (e) => {
+                    this.alertEnabled = e.target.checked;
+                    localStorage.setItem('alertEnabled', this.alertEnabled);
+                });
+
+                this.volumeSlider.addEventListener('input', (e) => {
+                    this.volume = parseInt(e.target.value);
+                    this.volumeValue.textContent = this.volume + '%';
+                    localStorage.setItem('volume', this.volume);
+                });
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'Space' && !e.target.matches('input, textarea, select')) {
+                        e.preventDefault();
+                        if (!this.isRunning) {
+                            this.start();
+                        } else {
+                            this.pause();
+                        }
+                    }
+                });
+            }
+
+            loadSettings() {
+                document.getElementById('cumulativeToggle').checked = this.isCumulative;
+                document.getElementById('voiceToggle').checked = this.voiceEnabled;
+                document.getElementById('alertToggle').checked = this.alertEnabled;
+                this.volumeSlider.value = this.volume;
+                this.volumeValue.textContent = this.volume + '%';
+                this.sessionCountDisplay.textContent = this.sessionCount;
+
+                // Update auto-start setting
+                this.autoStart = localStorage.getItem('autoStart') === 'true';
+            }
+
+            start() {
+                if (this.isPaused) {
+                    this.isPaused = false;
+                } else {
+                    this.playVoiceAnnouncement(this.isBreakMode ? 'break' : 'meeting');
+                }
+
+                this.isRunning = true;
+                this.startBtn.classList.add('hidden');
+                this.pauseBtn.classList.remove('hidden');
+                this.stopBtn.classList.remove('hidden');
+
+                this.interval = setInterval(() => {
+                    this.currentTime--;
+                    this.updateDisplay();
+
+                    if (this.currentTime <= 0) {
+                        this.completeSession();
+                    }
+                }, 1000);
+            }
+
+            pause() {
+                this.isRunning = false;
+                this.isPaused = true;
+                clearInterval(this.interval);
+
+                this.startBtn.classList.remove('hidden');
+                this.pauseBtn.classList.add('hidden');
+                this.stopBtn.classList.remove('hidden');
+            }
+
+            stop() {
+                this.isRunning = false;
+                this.isPaused = false;
+                clearInterval(this.interval);
+
+                // Reset to appropriate duration based on current mode
+                if (this.isBreakMode) {
+                    this.currentTime = this.getStoredBreakDuration();
+                    this.totalTime = this.getStoredBreakDuration();
+                } else {
+                    this.currentTime = this.getStoredMeetingDuration();
+                    this.totalTime = this.getStoredMeetingDuration();
+                }
+
+                this.startBtn.classList.remove('hidden');
+                this.pauseBtn.classList.add('hidden');
+                this.stopBtn.classList.add('hidden');
+
+                this.updateDisplay();
+            }
+
+            completeSession() {
+                this.isRunning = false;
+                clearInterval(this.interval);
+
+                if (this.alertEnabled) {
+                    this.playAlert();
+                }
+
+                if (!this.isBreakMode) {
+                    // Meeting completed, start break
+                    this.sessionCount++;
+                    localStorage.setItem('sessionCount', this.sessionCount);
+                    this.sessionCountDisplay.textContent = this.sessionCount;
+
+                    this.isBreakMode = true;
+                    this.currentTime = this.getStoredBreakDuration();
+                    this.totalTime = this.getStoredBreakDuration();
+                    this.updateSessionStatus();
+
+                    // Auto-start break if enabled
+                    if (this.autoStart) {
+                        setTimeout(() => {
+                            this.start();
+                        }, 2000);
+                    }
+                } else {
+                    // Break completed, back to meeting
+                    this.isBreakMode = false;
+                    this.currentTime = this.getStoredMeetingDuration();
+                    this.totalTime = this.getStoredMeetingDuration();
+                    this.updateSessionStatus();
+
+                    // Auto-start next meeting if enabled
+                    if (this.autoStart) {
+                        setTimeout(() => {
+                            this.start();
+                        }, 2000);
+                    }
+                }
+
+                // Show control buttons if auto-start is disabled
+                if (!this.autoStart) {
+                    this.startBtn.classList.remove('hidden');
+                    this.pauseBtn.classList.add('hidden');
+                    this.stopBtn.classList.add('hidden');
+                }
+
+                this.updateDisplay();
+            }
+
+            adjustTime(seconds) {
+                if (!this.isRunning) {
+                    this.currentTime = Math.max(1, this.currentTime + seconds); // Minimum 1 second
+                    this.totalTime = this.currentTime;
+                    this.updateDisplay();
+                }
+            }
+
+            resetCounter() {
+                if (confirm('¿Estás seguro de que quieres reiniciar el contador de sesiones?')) {
+                    this.sessionCount = 0;
+                    localStorage.setItem('sessionCount', '0');
+                    this.sessionCountDisplay.textContent = '0';
+                }
+            }
+
+            updateDisplay() {
+                // Update timer display
+                const hours = Math.floor(this.currentTime / 3600);
+                const minutes = Math.floor((this.currentTime % 3600) / 60);
+                const seconds = this.currentTime % 60;
+
+                this.timerDisplay.textContent =
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Update progress circle
+                const progress = (this.totalTime - this.currentTime) / this.totalTime;
+                const circumference = 2 * Math.PI * 40; // radius = 40
+                const offset = circumference - (progress * circumference);
+                this.progressCircle.style.strokeDashoffset = offset;
+            }
+
+            updateSessionStatus() {
+                if (this.isBreakMode) {
+                    this.statusText.textContent = 'Momento de Descanso';
+                    this.sessionStatus.className =
+                        'inline-flex items-center px-4 py-2 rounded-full bg-success/10 border border-success/20';
+                    this.statusText.className = 'text-success font-medium';
+                    this.sessionStatus.querySelector('.animate-breathe').className =
+                        'w-3 h-3 bg-success rounded-full mr-2 animate-breathe';
+                } else {
+                    this.statusText.textContent = 'Sesión de Reunión';
+                    this.sessionStatus.className =
+                        'inline-flex items-center px-4 py-2 rounded-full bg-accent/10 border border-accent/20';
+                    this.statusText.className = 'text-accent font-medium';
+                    this.sessionStatus.querySelector('.animate-breathe').className =
+                        'w-3 h-3 bg-accent rounded-full mr-2 animate-breathe';
+                }
+            }
+
+            playVoiceAnnouncement(type) {
+                if (!this.voiceEnabled) return;
+
+                // Use Web Speech API for Spanish announcements
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance();
+                    utterance.lang = 'es-ES';
+                    utterance.volume = this.volume / 100;
+
+                    if (type === 'meeting') {
+                        utterance.text = 'Empieza la reunión';
+                    } else {
+                        utterance.text = 'Empieza el momento de descanso';
+                    }
+
+                    speechSynthesis.speak(utterance);
+                }
+            }
+
+            playAlert() {
+                if (!this.alertEnabled) return;
+
+                const audio = document.getElementById('alertAudio');
+                audio.volume = this.volume / 100;
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            }
+        }
+
+        // Initialize timer when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new PomodoroTimer();
+        });
+
+        // Custom slider styling
+        const style = document.createElement('style');
+        style.textContent = `
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ee9d1a;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .slider::-moz-range-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ee9d1a;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    `;
+        document.head.appendChild(style);
+    </script>
+    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>
